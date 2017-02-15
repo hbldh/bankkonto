@@ -13,28 +13,29 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install bankkonto
+    $ pip install git+https://github.com/hbldh/bankkonto.git@master
 
 Documentation
 -------------
 
-Available at the `Github pages <https://hbldh.github.io/pymetawear/>`_
-of this repository.
+Will be available oin ReadTheDocs eventually.
 
 Usage
 -----
 
-
-
 .. code-block:: python
 
     >>> import bankkonto
-    >>> bankkonto.validate('9029', '5735214')
+    >>> bankkonto.validate('9029', '5735211')
     True
-    >>> bankkonto.validate('9029', '5725645')
+    >>> bankkonto.validate('9029', '5735214')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    ValidationError: integer division or modulo by zero
+      File "/home/hbldh/Repos/swedwise/bankkonto/bankkonto/account.py", line 117, in validate
+        bank_account_number, bank_name, bank_account_number[-1]))
+    bankkonto.exceptions.BankkontoValidationError: Bank account number 5735214 for Länsförsäkringar Bank has invalid control digit: 4
+
+
 
 
 

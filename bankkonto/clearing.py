@@ -91,6 +91,8 @@ clearing_nbrs.sort(key=lambda x: x[1])
 
 
 def get_bank_from_clearing_number(nbr):
+    nbr = int(nbr)
+
     if nbr < 1000 or nbr > 9999:
         raise ValueError("Clearing number must be in range 1000 - 9999.")
     res = list(filter(lambda x: nbr >= x[1] and nbr <= x[2], clearing_nbrs))
