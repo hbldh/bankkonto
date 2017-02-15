@@ -145,7 +145,7 @@ def validate(clearing_number, bank_account_number):
 def get_account_number_format_based_on_clearing_number(clearing_number):
     clearing_number = int(clearing_number)
     if clearing_number < 1000 or clearing_number > 9999:
-        raise ValueError("Clearing number must be in range 1000 - 9999.")
+        raise BankkontoValidationError("Clearing number must be in range 1000 - 9999.")
 
     res = list(filter(lambda x: clearing_number >= x[1] and clearing_number <= x[2], _type_1))
     if res:
@@ -160,11 +160,13 @@ def get_account_number_format_based_on_clearing_number(clearing_number):
 
 def _module_11(clearing_number, bank_account_number):
     weights = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    value = sum([weights[i] * int(c) for i, c in enumerate((str(clearing_number) + str(bank_account_number))[::-1])])
+    value = sum([weights[i] * int(c) for i, c in enumerate(
+        (str(clearing_number) + str(bank_account_number))[::-1])])
     return (value % 11) == 0
 
 
 def _module_10(bank_account_number):
-    values = [(2 if i % 2 else 1) * int(c) for i, c in enumerate((str(bank_account_number))[::-1])]
+    values = [(2 if i % 2 else 1) * int(c) for i, c in enumerate(
+        (str(bank_account_number))[::-1])]
     value = sum([(v - 9) if (v > 9) else v for v in values])
     return (value % 10) == 0

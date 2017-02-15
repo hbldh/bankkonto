@@ -19,6 +19,8 @@ from __future__ import unicode_literals
 
 import re
 
+from .exceptions import BankkontoException
+
 _CLEARING_LIST = """
 Sveriges Riksbank 1000-1099
 Nordea 1100-1199
@@ -94,10 +96,10 @@ def get_bank_from_clearing_number(nbr):
     nbr = int(nbr)
 
     if nbr < 1000 or nbr > 9999:
-        raise ValueError("Clearing number must be in range 1000 - 9999.")
+        raise BankkontoException("Clearing number must be in range 1000 - 9999.")
     res = list(filter(lambda x: nbr >= x[1] and nbr <= x[2], clearing_nbrs))
     if len(res) == 0:
-        raise ValueError("Clearing number {0} does not correspond to any Swedish bank.")
+        raise BankkontoException("Clearing number {0} does not correspond to any Swedish bank.")
     else:
         return res[0][0]
 
@@ -105,7 +107,7 @@ def get_bank_from_clearing_number(nbr):
 def get_clearing_ranges_for_bank(bank):
     res = list(filter(lambda x: x[0] == bank, clearing_nbrs))
     if len(res) == 0:
-        raise ValueError("Incorrect bank name.")
+        raise BankkontoException("Incorrect bank name.")
     else:
         return tuple(tuple(x[1:]) for x in res)
 
