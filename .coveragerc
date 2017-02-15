@@ -1,0 +1,10 @@
+[run]
+branch = True
+source = bankkonto
+include = */bankkonto/*
+omit =
+    */setup.py
+
+[report]
+exclude_lines =
+    except ImportError:

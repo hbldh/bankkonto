@@ -1,0 +1,29 @@
+language: python
+sudo: required
+dist: trusty
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - "nightly"
+matrix:
+  allow_failures:
+    - python: 3.4
+    - python: "nightly"
+branches:
+  only:
+    - master
+    - develop
+before_install:
+  - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
+install:
+  - "pip install pytest"
+  - "pip install pytest-cov"
+  - "pip install python-coveralls"
+  - "pip install Sphinx sphinx_rtd_theme"
+  - "pip install -e ."
+script: py.test tests/ --cov bankkonto --cov-report term-missing
+after_success:
+  - coveralls
+
