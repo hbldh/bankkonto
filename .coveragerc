@@ -7,4 +7,5 @@ omit =
 
 [report]
 exclude_lines =
-    except ImportError:
+    raise ValueError\("Unknown
+    raise BankkontoValidationError\("Unknown
