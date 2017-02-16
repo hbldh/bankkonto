@@ -147,11 +147,11 @@ def get_account_number_format_based_on_clearing_number(clearing_number):
     if clearing_number < 1000 or clearing_number > 9999:
         raise BankkontoValidationError("Clearing number must be in range 1000 - 9999.")
 
-    res = list(filter(lambda x: clearing_number >= x[1] and clearing_number <= x[2], _type_1))
+    res = list(filter(lambda x: x[1] <= clearing_number <= x[2], _type_1))
     if res:
         return res[0][0], 1, res[0][3], res[0][4]
 
-    res = list(filter(lambda x: clearing_number >= x[1] and clearing_number <= x[2], _type_2))
+    res = list(filter(lambda x: x[1] <= clearing_number <= x[2], _type_2))
     if res:
         return res[0][0], 2, res[0][3], res[0][4]
 
