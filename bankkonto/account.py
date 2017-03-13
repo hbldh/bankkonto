@@ -95,11 +95,19 @@ _type_2.sort(key=lambda x: x[1])
 
 
 def validate(clearing_number, bank_account_number):
-    clearing_number = str(clearing_number)
-    bank_account_number = str(bank_account_number)
 
-    if len(clearing_number) != 4:
-        raise BankkontoValidationError("Clearing number must be 4 digits.")
+    clearing_number = re.sub('\D', '', str(clearing_number))
+    bank_account_number = re.sub('\D', '', str(bank_account_number))
+
+    if clearing_number[0] == '8':
+        # Swedbank account. Clearing number has five digits.
+        # Disregard the last one for validation purposes.
+        if len(clearing_number) != 5:
+            raise BankkontoValidationError("Clearing number for Swedbank accounts must be 5 digits.")
+        clearing_number = clearing_number[:-1]
+    else:
+        if len(clearing_number) != 4:
+            raise BankkontoValidationError("Clearing number must be 4 digits.")
     bank_name, type_, nbr_format, footnote = get_account_number_format_based_on_clearing_number(clearing_number)
 
     if len(nbr_format.strip('0')) != len(bank_account_number):

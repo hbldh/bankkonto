@@ -47,7 +47,7 @@ Clean a entered string containing both clearing number and bank account number:
     >>> import bankkonto
     >>> cn, bn = bankkonto.clean_and_split('8156-6 111.222.333-2')
     >>> print(cn)
-    '8156'
+    '81566'
     >>> print(bn)
     '1112223332'
     >>> bankkonto.validate(cn, bn)

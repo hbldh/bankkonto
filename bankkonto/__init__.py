@@ -20,12 +20,11 @@ from .account import validate
 
 
 def clean_and_split(bank_account_number):
-    if bank_account_number.startswith('8'):
-        # Swedbank accounts with clearing 8XXX sometimes has an
-        # additional "-X" appended to the clearing number. This
-        # value is not to be considered when validating.
-        # FIXME: Analyse and address this better.
-        if bank_account_number[4] == '-':
-            bank_account_number = bank_account_number[:4] + bank_account_number[6:]
     cleaned = re.sub('\D', '', bank_account_number)
+    if cleaned.startswith('8'):
+        # Swedbank accounts with clearing number that starts with 8
+        # has five clearing number digits. Only the four first should
+        # be considered when validating though.
+        # FIXME: Analyse and address this better.
+        return cleaned[:5], cleaned[5:]
     return cleaned[:4], cleaned[4:]
