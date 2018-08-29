@@ -178,27 +178,3 @@ def _module_10(bank_account_number):
         (str(bank_account_number))[::-1])]
     value = sum([(v - 9) if (v > 9) else v for v in values])
     return (value % 10) == 0
-
-
-def _luhn(s):
-    digits = [int(d) for d in re.sub(r'\D', '', s)]
-    digitsum = sum(map(lambda x: x*2 if ((x*2) < 9) else (x*2) - 9, digits[:-1][1::2])) + \
-               sum(digits[:-1][::2])
-    check_digit = (digitsum * 9) % 10
-    check_digit = 10 - check_digit if check_digit else 0
-    return check_digit == digits[-1]
-
-
-def _l2(s):
-    digits = [int(d) for d in re.sub(r'\D', '', s)]
-    even_digitsum = sum(x if x < 5 else x - 9 for x in digits[::2])
-    check_digit = sum(digits, even_digitsum) % 10
-    return 10 - check_digit if check_digit else 0
-
-
-if __name__ == '__main__':
-    print(_luhn('79927398713'))
-    print(_luhn('8304106290'))
-    print(_l2('830410629'))
-
-    print(_l2('9999992009'))

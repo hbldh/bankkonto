@@ -1,22 +1,14 @@
 language: python
-sudo: required
-dist: trusty
+dist: xenial
 python:
   - 2.7
-  - 3.4
   - 3.5
   - 3.6
-  - "nightly"
-matrix:
-  allow_failures:
-    - python: 3.4
-    - python: "nightly"
+  - 3.7
 branches:
   only:
     - master
     - develop
-before_install:
-  - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
 install:
   - "pip install pytest"
   - "pip install pytest-cov"
