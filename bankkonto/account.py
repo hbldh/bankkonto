@@ -23,27 +23,29 @@ from bankkonto.exceptions import BankkontoValidationError
 
 
 TYPE_1_ACCOUNT_NUMBERS = """
-Amfa Bank AB 9660-9669 00000xxxxxxC 2
+Svea Bank AB 9660-9669 00000xxxxxxC 2
 Avanza Bank AB 9550-9569 00000xxxxxxC 2
 BlueStep Finans AB 9680-9689 00000xxxxxxC 1
-BNP Paribas Fortis Bank 9470-9479 00000xxxxxxC 2
+BNP Paribas SA., Sverige filial 9470-9479 00000xxxxxxC 2
 Citibank 9040-9049 00000xxxxxxC 2
 Danske Bank 1200-1399 00000xxxxxxC 1
 Danske Bank 2400-2499 00000xxxxxxC 1
 DNB Bank 9190-9199 00000xxxxxxC 2
 DNB Bank 9260-9269 00000xxxxxxC 2
 Ekobanken 9700-9709 00000xxxxxxC 2
-Erik Penser AB 9590 – 9599 00000xxxxxxC 2
+Erik Penser AB 9590-9599 00000xxxxxxC 2
 Forex Bank 9400-9449 00000xxxxxxC 1
 ICA Banken AB 9270-9279 00000xxxxxxC 1
 IKANO Bank 9170-9179 00000xxxxxxC 1
 JAK Medlemsbank 9670-9679 00000xxxxxxC 2
+Klarna Bank 9780-9789 00000xxxxxxC 2
 Landshypotek AB 9390-9399 00000xxxxxxC 2
 Lån & Spar Bank Sverige 9630-9639 00000xxxxxxC 1
 Länsförsäkringar Bank 3400-3409 00000xxxxxxC 1
 Länsförsäkringar Bank 9020-9029 00000xxxxxxC 2
 Länsförsäkringar Bank 9060-9069 00000xxxxxxC 1
 Marginalen Bank 9230-9239 00000xxxxxxC 1
+MedMera Bank AB 9650-9659 00000xxxxxxC 2
 Nordax Bank AB 9640-9649 00000xxxxxxC 2
 Nordea 1100-1199 00000xxxxxxC 1
 Nordea 1400-2099 00000xxxxxxC 1
@@ -55,7 +57,6 @@ Nordea 4000-4999 00000xxxxxxC 2
 Nordnet Bank 9100-9109 00000xxxxxxC 2
 Resurs Bank 9280-9289 00000xxxxxxC 1
 Riksgälden 9880-9889 00000xxxxxxC 2
-Royal bank of Scotland 9090-9099 00000xxxxxxC 2
 Santander Consumer Bank AS 9460-9469 00000xxxxxxC 1
 SBAB 9250-9259 00000xxxxxxC 1
 SEB 5000-5999 00000xxxxxxC 1
@@ -77,7 +78,7 @@ Riksgälden 9890-9899 00xxxxxxxxxC 1
 Sparbanken Syd 9570-9579 00xxxxxxxxxC 1
 Swedbank 8000-8999 00xxxxxxxxxC 3
 Swedbank 9300-9329 00xxxxxxxxxC 1
-Swedbank (f.d. Sparbanken Öresund) 9330-9349 00xxxxxxxxxC 1
+Swedbank 9330-9349 00xxxxxxxxxC 1
 """
 
 

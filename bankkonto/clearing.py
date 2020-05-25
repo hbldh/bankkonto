@@ -38,7 +38,6 @@ Länsförsäkringar Bank 9020-9029
 Citibank 9040-9049
 Länsförsäkringar Bank 9060-9069
 Calyon Bank 9080-9089
-RBS 9090-9099
 Nordnet Bank 9100-9109
 SEB 9120-9124
 SEB 9130-9149
@@ -56,7 +55,7 @@ Pareto Öhman 9380-9389
 Landshypotek 9390-9399
 Forex Bank 9400-9449
 GE Money Bank 9460-9469
-Fortis Bank 9470-9479
+BNP Paribas 9470-9479
 Parex Bank 9480-9489
 Nordea 9500-9549
 Avanza Bank 9550-9569
@@ -68,13 +67,14 @@ Bank of China (Luxembourg) 9620-9629
 Lån & Spar Bank 9630-9639
 Nordax Finans 9640-9649
 MedMera Bank 9650-9659
-Amfa Bank 9660-9669
+Svea Bank 9660-9669
 JAK Medlemsbank 9670-9679
 Bluestep Finans 9680-9689
 Folkia 9690-9699
 Ekobanken 9700-9709
 Aman Bank (ub) 9710-9719
 Netfonds Bank (ub) 9720-9729
+Klarna Bank 9780-9789
 Privatgirot 9860-9869
 Nasdaq-OMX 9870-9879
 Riksgälden 9880-9899
