@@ -73,8 +73,8 @@ Nordea/Plusgirot 9500-9549 00xxxxxxxxxC 3
 Nordea/Plusgirot 9960-9969 00xxxxxxxxxC 3
 Nordea - personkonto 3300 00xxxxxxxxxC 1
 Nordea - personkonto 3782 00xxxxxxxxxC 1
-Riksgälden 9890 -9899 00xxxxxxxxxC 1
-Sparbanken Syd 9570- 9579 00xxxxxxxxxC 1
+Riksgälden 9890-9899 00xxxxxxxxxC 1
+Sparbanken Syd 9570-9579 00xxxxxxxxxC 1
 Swedbank 8000-8999 00xxxxxxxxxC 3
 Swedbank 9300-9329 00xxxxxxxxxC 1
 Swedbank (f.d. Sparbanken Öresund) 9330-9349 00xxxxxxxxxC 1
