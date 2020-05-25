@@ -23,6 +23,8 @@ from bankkonto import validate, BankkontoValidationError
     ('1234', '5612541'),
     ('3300', '8012016286'),
     ('6001', '801230659'),
+    ('9570', '2600000000'),
+    ('9890', '2600000000'),
 ])
 def test_validation_ok(clearing_number, bank_account_number):
     assert validate(clearing_number, bank_account_number)
