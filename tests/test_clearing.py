@@ -23,6 +23,10 @@ from bankkonto.exceptions import BankkontoException
     ('9185', 'Danske Bank'),
     ('3300', 'Nordea'),
     ('9069', 'Länsförsäkringar Bank'),
+    ('7000', 'Swedbank'),
+    ('8000', 'Swedbank'),
+    ('9300', 'Swedbank'),
+    ('9330', 'Swedbank'),
 ])
 def test_clearing_number_2_bank_name(nbr, expected):
     assert get_bank_from_clearing_number(nbr) == expected

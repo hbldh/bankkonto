@@ -169,6 +169,11 @@ def get_account_number_format_based_on_clearing_number(clearing_number):
     raise BankkontoValidationError("Clearing number {0} does not correspond to any Swedish bank.".format(clearing_number))
 
 
+def is_swedbank(clearing_number):
+    bank_name, _, _, _ = get_account_number_format_based_on_clearing_number(clearing_number)
+    return bank_name == 'Swedbank'
+
+
 def _module_11(clearing_number, bank_account_number):
     weights = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     value = sum([weights[i] * int(c) for i, c in enumerate(
