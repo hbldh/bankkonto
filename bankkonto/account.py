@@ -19,8 +19,7 @@ from __future__ import unicode_literals
 
 import re
 
-from bankkonto.exceptions import BankkontoValidationError
-
+from bankkonto.exceptions import BankkontoValidationError, SwedbankBankkontoValidationError
 
 TYPE_1_ACCOUNT_NUMBERS = """
 Svea Bank AB 9660-9669 00000xxxxxxC 2
@@ -137,12 +136,15 @@ def validate(clearing_number, bank_account_number):
                     bank_account_number, bank_name, bank_account_number[-1]))
         elif footnote == 3:
             if not _module_10(bank_account_number):
-                # FIXME: The account number consists of 10 digits. Checksum calculation uses the last ten digits using
-                #        the modulus 10 check, according format for account number (clearing number not
-                #        included). However in rare occasions some of Swedbank’s accounts cannot be validated by
-                #        a checksum calculation.
-                raise BankkontoValidationError("Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1]))
+                # The account number consists of 10 digits. Checksum calculation uses the last ten digits using
+                # the modulus 10 check, according format for account number (clearing number not
+                # included). However in rare occasions some of Swedbank’s accounts cannot be validated by
+                # a checksum calculation.
+                message = "Bank account number {0} for {1} has invalid control digit: {2}".format(
+                    bank_account_number, bank_name, bank_account_number[-1])
+                if bank_name == 'Swedbank':
+                    raise SwedbankBankkontoValidationError(message)
+                raise BankkontoValidationError(message)
         else:
             raise BankkontoValidationError("Unknown Type 2 footnote value: {0}.".format(footnote))
     else:
