@@ -99,15 +99,6 @@ def validate(clearing_number, bank_account_number):
     clearing_number = re.sub('\D', '', str(clearing_number))
     bank_account_number = re.sub('\D', '', str(bank_account_number))
 
-    if clearing_number[0] == '8':
-        # Swedbank account. Clearing number has five digits.
-        # Disregard the last one for validation purposes.
-        if len(clearing_number) != 5:
-            raise BankkontoValidationError("Clearing number for Swedbank accounts must be 5 digits.")
-        clearing_number = clearing_number[:-1]
-    else:
-        if len(clearing_number) != 4:
-            raise BankkontoValidationError("Clearing number must be 4 digits.")
     bank_name, type_, nbr_format, footnote = get_account_number_format_based_on_clearing_number(clearing_number)
 
     if len(nbr_format.strip('0')) != len(bank_account_number):
@@ -154,6 +145,16 @@ def validate(clearing_number, bank_account_number):
 
 
 def get_account_number_format_based_on_clearing_number(clearing_number):
+    if clearing_number[0] == '8':
+        # Swedbank account. Clearing number has five digits.
+        # Disregard the last one for validation purposes.
+        if len(clearing_number) != 5:
+            raise BankkontoValidationError("Clearing number for Swedbank accounts must be 5 digits.")
+        clearing_number = clearing_number[:-1]
+    else:
+        if len(clearing_number) != 4:
+            raise BankkontoValidationError("Clearing number must be 4 digits.")
+
     clearing_number = int(clearing_number)
     if clearing_number < 1000 or clearing_number > 9999:
         raise BankkontoValidationError("Clearing number must be in range 1000 - 9999.")
@@ -172,6 +173,12 @@ def get_account_number_format_based_on_clearing_number(clearing_number):
 def is_swedbank(clearing_number):
     bank_name, _, _, _ = get_account_number_format_based_on_clearing_number(clearing_number)
     return bank_name == 'Swedbank'
+
+
+def expected_account_length(clearing_number):
+    _, _, nbr_format, _ = get_account_number_format_based_on_clearing_number(clearing_number)
+
+    return len(nbr_format.strip('0'))
 
 
 def _module_11(clearing_number, bank_account_number):
