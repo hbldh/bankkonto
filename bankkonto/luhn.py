@@ -34,6 +34,3 @@ def calculate_luhn(partial_card_number):
     # If the (sum mod 10) == 0, then the check digit is 0
     # Else, the check digit = 10 - (sum mod 10)
     return check_digit if check_digit == 0 else 10 - check_digit
-
-
-

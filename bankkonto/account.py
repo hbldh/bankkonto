@@ -84,20 +84,20 @@ Swedbank (f.d. Sparbanken Öresund) 9330-9349 00xxxxxxxxxC 1
 _type_1 = [(_parse_result[0], int(_parse_result[1]),
             int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
             _parse_result[3], int(_parse_result[4])) for
-           _parse_result in re.findall('(.+)\s([\d]+)-*(\d*)\s(0+x+C)\s(\d+)', TYPE_1_ACCOUNT_NUMBERS.strip())]
+           _parse_result in re.findall('(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)', TYPE_1_ACCOUNT_NUMBERS.strip())]
 _type_1.sort(key=lambda x: x[1])
 
 _type_2 = [(_parse_result[0], int(_parse_result[1]),
             int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
             _parse_result[3], int(_parse_result[4])) for
-           _parse_result in re.findall('(.+)\s([\d]+)-*(\d*)\s(0+x+C)\s(\d+)', TYPE_2_ACCOUNT_NUMBERS.strip())]
+           _parse_result in re.findall('(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)', TYPE_2_ACCOUNT_NUMBERS.strip())]
 _type_2.sort(key=lambda x: x[1])
 
 
 def validate(clearing_number, bank_account_number):
 
-    clearing_number = re.sub('\D', '', str(clearing_number))
-    bank_account_number = re.sub('\D', '', str(bank_account_number))
+    clearing_number = re.sub('\\D', '', str(clearing_number))
+    bank_account_number = re.sub('\\D', '', str(bank_account_number))
 
     if clearing_number[0] == '8':
         # Swedbank account. Clearing number has five digits.

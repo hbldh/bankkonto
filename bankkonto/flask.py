@@ -17,7 +17,7 @@ import bankkonto
 
 try:
     from wtforms.validators import ValidationError
-except:
+except:  # noqa
     # Flask-WTF is not installed. To be able to use this properly
     # it needs to be, so we can safely use ValueError instead.
     ValidationError = ValueError
@@ -35,7 +35,6 @@ class BankkontoValidator(object):
     def __call__(self, form, field):
         cn, bn = bankkonto.clean_and_split(field.data)
         try:
-            out = bankkonto.validate(cn, bn)
+            bankkonto.validate(cn, bn)
         except bankkonto.BankkontoValidationError as e:
             raise ValidationError(str(e))
-

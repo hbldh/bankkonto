@@ -15,13 +15,13 @@ from __future__ import unicode_literals
 import sys
 import re
 
-from .version import __version__, version
-from .exceptions import BankkontoException, BankkontoValidationError
-from .account import validate
+from .version import __version__, version  # noqa
+from .exceptions import BankkontoException, BankkontoValidationError   # noqa
+from .account import validate  # noqa
 
 
 def clean_and_split(bank_account_number):
-    cleaned = re.sub('\D', '', bank_account_number)
+    cleaned = re.sub('\\D', '', bank_account_number)
     if cleaned.startswith('8'):
         # Swedbank accounts with clearing number that starts with 8
         # has five clearing number digits. Only the four first should
