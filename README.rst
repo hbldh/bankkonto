@@ -2,8 +2,9 @@
 Bankkonto
 =========
 
-.. image:: https://travis-ci.org/hbldh/bankkonto.svg?branch=master
-    :target: https://travis-ci.org/hbldh/bankkonto
+
+.. image:: https://github.com/hbldh/bankkonto/workflows/Build%20and%20Test/badge.svg
+    :target: https://github.com/hbldh/bankkonto/actions?query=workflow%3A%22Build+and+Test%22
 .. image:: https://coveralls.io/repos/github/hbldh/bankkonto/badge.svg?branch=master
     :target: https://coveralls.io/github/hbldh/bankkonto?branch=master
 
