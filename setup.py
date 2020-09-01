@@ -72,5 +72,9 @@ setup(
     install_requires=[],
     extras_require={},
     ext_modules=[],
-    entry_points={}
+    entry_points={
+        'console_scripts': [
+            'bankkonto-validate = bankkonto:cli',
+        ],
+    }
 )

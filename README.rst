@@ -57,10 +57,6 @@ There is also a `WTForms <https://wtforms.readthedocs.io/en/latest/>`_ validator
 at ``bankkonto.flask.BankkontoValidator`` that can be used with e.g.
 `Flask-WTF <https://flask-wtf.readthedocs.io/en/stable/>`_.
 
-.. note::
-
-    A Django counterpart is under development.
-
 Tests
 -----
 
