@@ -29,7 +29,7 @@ from bankkonto import validate, BankkontoValidationError
     ('9590', '2000000'),
     ('9598', '2400000'),
 ])
-def test_validation_ok(clearing_number, bank_account_number):
+def test_validation_ok(clearing_number: str, bank_account_number: str) -> None:
     assert validate(clearing_number, bank_account_number)
 
 
@@ -44,6 +44,6 @@ def test_validation_ok(clearing_number, bank_account_number):
     ('8001', '8012306581'),
     ('9999', '8012306581'),
 ])
-def test_validation_fails(clearing_number, bank_account_number):
+def test_validation_fails(clearing_number: str, bank_account_number: str) -> None:
     with pytest.raises(BankkontoValidationError):
         assert validate(clearing_number, bank_account_number)

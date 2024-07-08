@@ -5,7 +5,8 @@
 =======================
 
 List of bank account number formats from `Bankgirot
-<https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf>`_.
+<https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf>
+`_.
 
 .. moduleauthor:: hbldh <henrik.blidh@swedwise.com>
 Created on 2017-02-15, 11:41
@@ -18,6 +19,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 import re
+from typing import Literal
 
 from bankkonto.exceptions import BankkontoValidationError, SwedbankBankkontoValidationError
 
@@ -94,7 +96,7 @@ _type_2 = [(_parse_result[0], int(_parse_result[1]),
 _type_2.sort(key=lambda x: x[1])
 
 
-def validate(clearing_number, bank_account_number):
+def validate(clearing_number: str, bank_account_number: str) -> Literal[True]:  # noqa: C901
 
     clearing_number = re.sub('\\D', '', str(clearing_number))
     bank_account_number = re.sub('\\D', '', str(bank_account_number))
@@ -144,7 +146,7 @@ def validate(clearing_number, bank_account_number):
     return True
 
 
-def get_account_number_format_based_on_clearing_number(clearing_number):
+def get_account_number_format_based_on_clearing_number(clearing_number: str) -> tuple[str, int, str, int]:
     if clearing_number[0] == '8':
         # Swedbank account. Clearing number has five digits.
         # Disregard the last one for validation purposes.
@@ -155,40 +157,42 @@ def get_account_number_format_based_on_clearing_number(clearing_number):
         if len(clearing_number) != 4:
             raise BankkontoValidationError("Clearing number must be 4 digits.")
 
-    clearing_number = int(clearing_number)
-    if clearing_number < 1000 or clearing_number > 9999:
+    clearing_number_int = int(clearing_number)
+    if clearing_number_int < 1000 or clearing_number_int > 9999:
         raise BankkontoValidationError("Clearing number must be in range 1000 - 9999.")
 
-    res = list(filter(lambda x: x[1] <= clearing_number <= x[2], _type_1))
+    res = list(filter(lambda x: x[1] <= clearing_number_int <= x[2], _type_1))
     if res:
         return res[0][0], 1, res[0][3], res[0][4]
 
-    res = list(filter(lambda x: x[1] <= clearing_number <= x[2], _type_2))
+    res = list(filter(lambda x: x[1] <= clearing_number_int <= x[2], _type_2))
     if res:
         return res[0][0], 2, res[0][3], res[0][4]
 
-    raise BankkontoValidationError("Clearing number {0} does not correspond to any Swedish bank.".format(clearing_number))
+    raise BankkontoValidationError(
+        "Clearing number {0} does not correspond to any Swedish bank.".format(clearing_number_int)
+    )
 
 
-def is_swedbank(clearing_number):
+def is_swedbank(clearing_number: str) -> bool:
     bank_name, _, _, _ = get_account_number_format_based_on_clearing_number(clearing_number)
     return bank_name == 'Swedbank'
 
 
-def expected_account_length(clearing_number):
+def expected_account_length(clearing_number: str) -> int:
     _, _, nbr_format, _ = get_account_number_format_based_on_clearing_number(clearing_number)
 
     return len(nbr_format.strip('0'))
 
 
-def _module_11(clearing_number, bank_account_number):
+def _module_11(clearing_number: str, bank_account_number: str) -> int:
     weights = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     value = sum([weights[i] * int(c) for i, c in enumerate(
         (str(clearing_number) + str(bank_account_number))[::-1])])
     return (value % 11) == 0
 
 
-def _module_10(bank_account_number):
+def _module_10(bank_account_number: str) -> int:
     values = [(2 if i % 2 else 1) * int(c) for i, c in enumerate(
         (str(bank_account_number))[::-1])]
     value = sum([(v - 9) if (v > 9) else v for v in values])

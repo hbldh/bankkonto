@@ -92,7 +92,7 @@ clearing_nbrs = [(_parse_result[0], int(_parse_result[1]),
 clearing_nbrs.sort(key=lambda x: x[1])
 
 
-def get_bank_from_clearing_number(nbr):
+def get_bank_from_clearing_number(nbr: str | int) -> str:
     nbr = int(nbr)
 
     if nbr < 1000 or nbr > 9999:
@@ -101,10 +101,12 @@ def get_bank_from_clearing_number(nbr):
     if len(res) == 0:
         raise BankkontoException("Clearing number {0} does not correspond to any Swedish bank.")
     else:
-        return res[0][0]
+        bank = res[0][0]
+        assert isinstance(bank, str)
+        return bank
 
 
-def get_clearing_ranges_for_bank(bank):
+def get_clearing_ranges_for_bank(bank: str) -> tuple[tuple[int, ...], ...]:
     res = list(filter(lambda x: x[0] == bank, clearing_nbrs))
     if len(res) == 0:
         raise BankkontoException("Incorrect bank name.")
