@@ -2,8 +2,9 @@
 Bankkonto
 =========
 
-.. image:: https://travis-ci.org/hbldh/bankkonto.svg?branch=master
-    :target: https://travis-ci.org/hbldh/bankkonto
+
+.. image:: https://github.com/hbldh/bankkonto/workflows/Build%20and%20Test/badge.svg
+    :target: https://github.com/hbldh/bankkonto/actions?query=workflow%3A%22Build+and+Test%22
 .. image:: https://coveralls.io/repos/github/hbldh/bankkonto/badge.svg?branch=master
     :target: https://coveralls.io/github/hbldh/bankkonto?branch=master
 
@@ -56,10 +57,6 @@ Clean a entered string containing both clearing number and bank account number:
 There is also a `WTForms <https://wtforms.readthedocs.io/en/latest/>`_ validator
 at ``bankkonto.flask.BankkontoValidator`` that can be used with e.g.
 `Flask-WTF <https://flask-wtf.readthedocs.io/en/stable/>`_.
-
-.. note::
-
-    A Django counterpart is under development.
 
 Tests
 -----
