@@ -15,15 +15,10 @@ from __future__ import absolute_import
 
 import os
 import sys
-import platform
-import subprocess
-import shutil
 import re
-import glob
 from codecs import open
 
 from setuptools import setup, find_packages
-from setuptools.command import build_py, develop
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -31,11 +26,12 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 with open('bankkonto/version.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
+    _version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE)
+    assert _version
+    version = _version.group(1)
 
 
-def read(f):
+def read(f: str) -> str:
     return open(f, encoding='utf-8').read()
 
 
@@ -68,7 +64,9 @@ setup(
     ],
     packages=find_packages(exclude=['tests', 'docs']),
     include_package_data=True,
-    package_data={},
+    package_data={
+        'bankkonto': ['py.typed'],
+    },
     install_requires=[],
     extras_require={},
     ext_modules=[],

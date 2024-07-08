@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "bankkonto"
+version = "0.2.0"
+description = ""
+authors = ["Karol Czachorowski <karol@zensum.se>"]
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4"
+setuptools = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "*"
+mypy = "*"
+pytest = "*"
+types-setuptools = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

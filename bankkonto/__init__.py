@@ -20,7 +20,16 @@ from .exceptions import BankkontoException, BankkontoValidationError   # noqa
 from .account import validate  # noqa
 
 
-def clean_and_split(bank_account_number):
+__all__ = [
+    '__version__',
+    'version',
+    'BankkontoException',
+    'BankkontoValidationError',
+    'validate',
+]
+
+
+def clean_and_split(bank_account_number: str) -> tuple[str, str]:
     cleaned = re.sub('\\D', '', bank_account_number)
     if cleaned.startswith('8'):
         # Swedbank accounts with clearing number that starts with 8
@@ -31,7 +40,7 @@ def clean_and_split(bank_account_number):
     return cleaned[:4], cleaned[4:]
 
 
-def cli(args=None):
+def cli(args: list[str] | None = None) -> None:
     import argparse
     args = args if args else sys.argv[1:]
 

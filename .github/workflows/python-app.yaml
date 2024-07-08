@@ -1,0 +1,24 @@
+name: Python lint and test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      APP_ENV: DEVELOPMENT
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.12.4
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.12.4"
+    - name: Install dependencies
+      run: curl -sSL https://install.python-poetry.org | python3 -
+    - name: Install dependencies
+      run: poetry install
+    #   if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+    - name: Lint with flake8 + mypy
+      run: ./run_linter.sh
