@@ -1,13 +1,16 @@
-[tool.poetry]
+[project]
 name = "bankkonto"
 version = "0.2.0"
 description = ""
-authors = ["Karol Czachorowski <karol@zensum.se>"]
-readme = "README.rst"
+authors = [
+    {name = "Karol Czachorowski",email = "karol@zensum.se"}
+]
+requires-python = ">=3.10,<4"
 
-[tool.poetry.dependencies]
-python = ">=3.10,<4"
-setuptools = "*"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -16,6 +19,6 @@ mypy = "*"
 pytest = "*"
 types-setuptools = "*"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+setuptools = "*"
