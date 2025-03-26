@@ -2,7 +2,7 @@
 WTForms validator
 -----------------
 
-:copyright: 2017-02-16 by hbldh <henrik.blidh@swedwise.com>
+:copyright: 2017-02-16 by hbldh <henrik.blidh@nedomkull.com>
 
 """
 

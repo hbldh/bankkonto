@@ -5,7 +5,7 @@
 List of clearing numbers fetched from `Swedish Bankers'
 Association <http://www.swedishbankers.se/fraagor-vi-arbetar-med/clearingnummer/clearingnummer/>`_.
 
-.. moduleauthor:: hbldh <henrik.blidh@swedwise.com>
+.. moduleauthor:: hbldh <henrik.blidh@nedomkull.com>
 Created on 2017-02-15, 11:13
 
 """

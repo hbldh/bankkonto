@@ -2,7 +2,7 @@
 version.py
 -----------
 
-:copyright: 2016-11-28 by hbldh <henrik.blidh@swedwise.com>
+:copyright: 2016-11-28 by hbldh <henrik.blidh@nedomkull.com>
 
 """
 

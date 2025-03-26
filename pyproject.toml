@@ -9,7 +9,7 @@ description = "Python validation library for Swedish bank account numbers"
 readme = "README.rst"
 license = {text = "MIT"}
 authors = [
-    {name = "Henrik Blidh", email = "henrik.blidh@swedwise.com"}
+    {name = "Henrik Blidh", email = "henrik.blidh@nedomkull.com"}
 ]
 keywords = ["Bank", "Bank account", "Swedish bank account", "validation"]
 classifiers = [

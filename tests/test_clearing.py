@@ -2,7 +2,7 @@
 :mod:`test_clearing`
 =======================
 
-.. moduleauthor:: hbldh <henrik.blidh@swedwise.com>
+.. moduleauthor:: hbldh <henrik.blidh@nedomkull.com>
 Created on 2017-02-15, 15:07
 
 """

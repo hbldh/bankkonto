@@ -6,7 +6,7 @@ List of bank account number formats from `Bankgirot
 <https://www.bankgirot.se/globalassets/dokument/anvandarmanualer/bankernaskontonummeruppbyggnad_anvandarmanual_sv.pdf>
 `_.
 
-.. moduleauthor:: hbldh <henrik.blidh@swedwise.com>
+.. moduleauthor:: hbldh <henrik.blidh@nedomkull.com>
 Created on 2017-02-15, 11:41
 
 """
