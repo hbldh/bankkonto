@@ -1,26 +1,20 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Bankkonto
-=========
-
-TBW
-
-"""
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 import sys
 import re
+from typing import Tuple, List
 
-from .version import __version__, version  # noqa
-from .exceptions import BankkontoException, BankkontoValidationError   # noqa
-from .account import validate  # noqa
+from bankkonto.__version__ import __version__, version  # noqa
+from bankkonto.exceptions import BankkontoException, BankkontoValidationError   # noqa
+from bankkonto.account import validate  # noqa
 
+__all__ = [
+    '__version__',
+    'version',
+    'BankkontoException',
+    'BankkontoValidationError',
+    'validate',
+]
 
-def clean_and_split(bank_account_number):
+def clean_and_split(bank_account_number: str) -> Tuple[str, str]:
     cleaned = re.sub('\\D', '', bank_account_number)
     if cleaned.startswith('8'):
         # Swedbank accounts with clearing number that starts with 8
@@ -31,7 +25,7 @@ def clean_and_split(bank_account_number):
     return cleaned[:4], cleaned[4:]
 
 
-def cli(args=None):
+def cli(args: List[str] | None = None) -> None:
     import argparse
     args = args if args else sys.argv[1:]
 

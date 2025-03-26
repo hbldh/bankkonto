@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 WTForms validator
 -----------------
@@ -7,11 +5,6 @@ WTForms validator
 :copyright: 2017-02-16 by hbldh <henrik.blidh@swedwise.com>
 
 """
-
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import unicode_literals
 
 import bankkonto
 

@@ -2,6 +2,15 @@
 History
 =======
 
+v1.0.0 (2025-03-26)
+-------------------
+- Refreshed the solution to be more modern and up-to-date with the latest Python features.
+- Corrected some missing bank account number ranges.
+- Added support for Python 3.10, 3.11, 3.12 and 3.13.
+- Dropped support for Python 2.7
+- Replaced setup.py with pyproject.toml
+- Added type hints
+
 v0.2.0 (2018-08-29)
 -------------------
 - Improved Module 10 / Luhn algorithm

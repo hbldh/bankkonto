@@ -1,18 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
-:mod:`test_validation`
+:mod:`test_flask_validator`
 =======================
 
 .. moduleauthor:: hbldh <henrik.blidh@swedwise.com>
 Created on 2017-02-15, 15:07
 
 """
-
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import unicode_literals
 
 import pytest
 

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bankkonto"
+version = "1.0.0"
+description = "Python validation library for Swedish bank account numbers"
+readme = "README.rst"
+license = {text = "MIT"}
+authors = [
+    {name = "Henrik Blidh", email = "henrik.blidh@swedwise.com"}
+]
+keywords = ["Bank", "Bank account", "Swedish bank account", "validation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Telecommunications Industry",
+    "Topic :: Office/Business :: Financial",
+]
+
+[project.urls]
+homepage = "https://github.com/hbldh/bankkonto"
+
+[project.scripts]
+bankkonto-validate = "bankkonto:cli"
+
+[tool.setuptools.packages.find]
+exclude = ["tests", "docs"]

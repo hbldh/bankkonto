@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 :mod:`test_validation`
 =======================
@@ -8,11 +6,6 @@
 Created on 2017-02-15, 15:07
 
 """
-
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import unicode_literals
 
 import pytest
 
@@ -23,8 +16,13 @@ from bankkonto import validate, BankkontoValidationError
     ('1234', '5612541'),
     ('3300', '8012016286'),
     ('6001', '801230659'),
+    ('9570', '2600000000'),
+    ('9890', '2600000000'),
+    ('3782', '2600000000'),
+    ('9590', '2000000'),
+    ('9598', '2400000'),
 ])
-def test_validation_ok(clearing_number, bank_account_number):
+def test_validation_ok(clearing_number: str, bank_account_number: str) -> None:
     assert validate(clearing_number, bank_account_number)
 
 
@@ -39,6 +37,6 @@ def test_validation_ok(clearing_number, bank_account_number):
     ('8001', '8012306581'),
     ('9999', '8012306581'),
 ])
-def test_validation_fails(clearing_number, bank_account_number):
+def test_validation_fails(clearing_number: str, bank_account_number: str) -> None:
     with pytest.raises(BankkontoValidationError):
         assert validate(clearing_number, bank_account_number)
