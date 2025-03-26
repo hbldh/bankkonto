@@ -81,50 +81,75 @@ Swedbank 9330-9349 00xxxxxxxxxC 1
 """
 
 
-_type_1 = [(_parse_result[0], int(_parse_result[1]),
-            int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
-            _parse_result[3], int(_parse_result[4])) for
-           _parse_result in re.findall('(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)', TYPE_1_ACCOUNT_NUMBERS.strip())]
+_type_1 = [
+    (
+        _parse_result[0],
+        int(_parse_result[1]),
+        int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
+        _parse_result[3],
+        int(_parse_result[4]),
+    )
+    for _parse_result in re.findall("(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)", TYPE_1_ACCOUNT_NUMBERS.strip())
+]
 _type_1.sort(key=lambda x: x[1])
 
-_type_2 = [(_parse_result[0], int(_parse_result[1]),
-            int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
-            _parse_result[3], int(_parse_result[4])) for
-           _parse_result in re.findall('(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)', TYPE_2_ACCOUNT_NUMBERS.strip())]
+_type_2 = [
+    (
+        _parse_result[0],
+        int(_parse_result[1]),
+        int(_parse_result[2]) if _parse_result[2] else int(_parse_result[1]),
+        _parse_result[3],
+        int(_parse_result[4]),
+    )
+    for _parse_result in re.findall("(.+)\\s([\\d]+)-*(\\d*)\\s(0+x+C)\\s(\\d+)", TYPE_2_ACCOUNT_NUMBERS.strip())
+]
 _type_2.sort(key=lambda x: x[1])
 
 
 def validate(clearing_number: str, bank_account_number: str) -> Literal[True]:  # noqa: C901
 
-    clearing_number = re.sub('\\D', '', str(clearing_number))
-    bank_account_number = re.sub('\\D', '', str(bank_account_number))
+    clearing_number = re.sub("\\D", "", str(clearing_number))
+    bank_account_number = re.sub("\\D", "", str(bank_account_number))
 
     bank_name, type_, nbr_format, footnote = get_account_number_format_based_on_clearing_number(clearing_number)
 
-    if len(nbr_format.strip('0')) != len(bank_account_number):
-        raise BankkontoValidationError("Bank account number for {0} must be {1} digits.".format(
-            bank_name, len(nbr_format.strip('0'))))
+    if len(nbr_format.strip("0")) != len(bank_account_number):
+        raise BankkontoValidationError(
+            "Bank account number for {0} must be {1} digits.".format(bank_name, len(nbr_format.strip("0")))
+        )
 
     if type_ == 1:
         if footnote == 1:
             if not _module_11(clearing_number[1:], bank_account_number):
-                raise BankkontoValidationError("Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1]))
+                raise BankkontoValidationError(
+                    "Bank account number {0} for {1} has invalid control digit: {2}".format(
+                        bank_account_number, bank_name, bank_account_number[-1]
+                    )
+                )
         elif footnote == 2:
             if not _module_11(clearing_number, bank_account_number):
-                raise BankkontoValidationError("Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1]))
+                raise BankkontoValidationError(
+                    "Bank account number {0} for {1} has invalid control digit: {2}".format(
+                        bank_account_number, bank_name, bank_account_number[-1]
+                    )
+                )
         else:
             raise BankkontoValidationError("Unknown Type 1 footnote value: {0}.".format(footnote))
     elif type_ == 2:
         if footnote == 1:
             if not _module_10(bank_account_number):
-                raise BankkontoValidationError("Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1]))
+                raise BankkontoValidationError(
+                    "Bank account number {0} for {1} has invalid control digit: {2}".format(
+                        bank_account_number, bank_name, bank_account_number[-1]
+                    )
+                )
         elif footnote == 2:
-            if not _module_11('', bank_account_number):
-                raise BankkontoValidationError("Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1]))
+            if not _module_11("", bank_account_number):
+                raise BankkontoValidationError(
+                    "Bank account number {0} for {1} has invalid control digit: {2}".format(
+                        bank_account_number, bank_name, bank_account_number[-1]
+                    )
+                )
         elif footnote == 3:
             if not _module_10(bank_account_number):
                 # The account number consists of 10 digits. Checksum calculation uses the last ten digits using
@@ -132,8 +157,9 @@ def validate(clearing_number: str, bank_account_number: str) -> Literal[True]:  
                 # included). However in rare occasions some of Swedbank’s accounts cannot be validated by
                 # a checksum calculation.
                 message = "Bank account number {0} for {1} has invalid control digit: {2}".format(
-                    bank_account_number, bank_name, bank_account_number[-1])
-                if bank_name == 'Swedbank':
+                    bank_account_number, bank_name, bank_account_number[-1]
+                )
+                if bank_name == "Swedbank":
                     raise SwedbankBankkontoValidationError(message)
                 raise BankkontoValidationError(message)
         else:
@@ -145,7 +171,7 @@ def validate(clearing_number: str, bank_account_number: str) -> Literal[True]:  
 
 
 def get_account_number_format_based_on_clearing_number(clearing_number: str) -> tuple[str, int, str, int]:
-    if clearing_number[0] == '8':
+    if clearing_number[0] == "8":
         # Swedbank account. Clearing number has five digits.
         # Disregard the last one for validation purposes.
         if len(clearing_number) != 5:
@@ -174,24 +200,22 @@ def get_account_number_format_based_on_clearing_number(clearing_number: str) -> 
 
 def is_swedbank(clearing_number: str) -> bool:
     bank_name, _, _, _ = get_account_number_format_based_on_clearing_number(clearing_number)
-    return bank_name == 'Swedbank'
+    return bank_name == "Swedbank"
 
 
 def expected_account_length(clearing_number: str) -> int:
     _, _, nbr_format, _ = get_account_number_format_based_on_clearing_number(clearing_number)
 
-    return len(nbr_format.strip('0'))
+    return len(nbr_format.strip("0"))
 
 
 def _module_11(clearing_number: str, bank_account_number: str) -> int:
     weights = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    value = sum([weights[i] * int(c) for i, c in enumerate(
-        (str(clearing_number) + str(bank_account_number))[::-1])])
+    value = sum([weights[i] * int(c) for i, c in enumerate((str(clearing_number) + str(bank_account_number))[::-1])])
     return (value % 11) == 0
 
 
 def _module_10(bank_account_number: str) -> int:
-    values = [(2 if i % 2 else 1) * int(c) for i, c in enumerate(
-        (str(bank_account_number))[::-1])]
+    values = [(2 if i % 2 else 1) * int(c) for i, c in enumerate((str(bank_account_number))[::-1])]
     value = sum([(v - 9) if (v > 9) else v for v in values])
     return (value % 10) == 0

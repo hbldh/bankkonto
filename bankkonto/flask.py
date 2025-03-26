@@ -20,7 +20,8 @@ class BankkontoValidator(object):
     """
     Validates that input in this field is a valid Swedish bank account number.
     """
-    field_flags = ('', )
+
+    field_flags = ("",)
 
     def __init__(self, *args, **kwargs):
         pass

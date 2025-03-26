@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bankkonto"
-version = "1.0.0"
+version = "1.0.1"
 description = "Python validation library for Swedish bank account numbers"
-readme = "README.rst"
+readme = "README.md"
 license = {text = "MIT"}
 authors = [
     {name = "Henrik Blidh", email = "henrik.blidh@nedomkull.com"}

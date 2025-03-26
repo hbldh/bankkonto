@@ -14,14 +14,17 @@ from __future__ import absolute_import
 
 class BankkontoException(Exception):
     """Base exception class for this module."""
+
     pass
 
 
 class BankkontoValidationError(BankkontoException):
     """Validation of bank account number failed."""
+
     pass
 
 
 class SwedbankBankkontoValidationError(BankkontoValidationError):
     """Validation of Swedbank bank account number failed."""
+
     pass
